@@ -1,0 +1,54 @@
+{
+	"name": "v-native-dialog",
+	"version": "0.1.0",
+	"description": "A Vue 3 component using the native <dialog> element",
+	"license": "MIT",
+	"homepage": "https://github.com/kkuegler/v-native-dialog#readme",
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/kkuegler/v-native-dialog.git"
+	},
+	"bugs": {
+		"url": "https://github.com/kkuegler/v-native-dialog/issues"
+	},
+	"keywords": [
+		"Vue",
+		"dialog",
+		"modal",
+		"native",
+		"component"
+	],
+	"author": "Konrad Kügler <swamblumat-git@yahoo.de>",
+	"type": "module",
+	"files": [
+		"dist"
+	],
+	"main": "./dist/vue-native-dialog.js",
+	"module": "./dist/vue-native-dialog.js",
+	"exports": {
+		".": {
+			"import": "./dist/vue-native-dialog.js"
+		},
+		"./style.css": {
+			"import": "./dist/style.css"
+		}
+	},
+	"types": "./dist/index.d.ts",
+	"scripts": {
+		"dev": "vite",
+		"build": "vite build && vue-tsc --emitDeclarationOnly",
+		"preview": "vite preview",
+		"watch": "vite build -w",
+		"format": "prettier . --write"
+	},
+	"peerDependencies": {
+		"vue": "^3.4.38"
+	},
+	"devDependencies": {
+		"@vitejs/plugin-vue": "^5.1.2",
+		"prettier": "^3.3.3",
+		"typescript": "^5.5.4",
+		"vite": "^5.4.2",
+		"vue-tsc": "^2.0.29"
+	}
+}
