@@ -1,4 +1,4 @@
-<script lang="ts" setup>
+<script setup lang="ts">
 import { defineEmits, defineProps, nextTick, onBeforeUnmount, PropType, ref, watch } from "vue";
 import type { ResultPayload } from "../use-dialog";
 const open = defineModel<boolean>("open", { default: true });
@@ -52,17 +52,19 @@ const showDialog = () => {
 function onCancel(e: Event) {
 	if (props.preventEscape) {
 		e.preventDefault();
-	} else {
-		emitResult("cancel", undefined);
 	}
 }
 
-function emitClosed(e: Event) {
+function onClosed(e: Event) {
 	open.value = false;
 	emitResult("close", undefined);
 	emit("closed", dialog.value);
 }
-function closeDialog() {
+
+function closeDialog(action?: string, result?: any) {
+	if (action) {
+		emitResult(action, result);
+	}
 	dialog.value?.close();
 }
 
@@ -75,11 +77,6 @@ function emitResult(action: string, result: any) {
 		result,
 	});
 	alreadyEmittedResult.value = true;
-}
-
-function closeWithResult(action: string, result: any) {
-	emitResult(action, result);
-	closeDialog();
 }
 
 watch(
@@ -98,10 +95,20 @@ watch(
 	},
 	{
 		immediate: true,
-	},
+	}
 );
 
 onBeforeUnmount(closeDialog);
+
+defineExpose({
+	closeDialog,
+	openDialog() {
+		open.value = true;
+	},
+});
+defineSlots<{
+	default(props: { closeDialog: typeof closeDialog }): any;
+}>();
 </script>
 
 <template>
@@ -109,10 +116,10 @@ onBeforeUnmount(closeDialog);
 		v-if="displayDirective !== 'if' || open"
 		class="v-native-dialog"
 		ref="dialog"
-		@close="emitClosed"
+		@close="onClosed"
 		@cancel="onCancel"
 	>
-		<slot v-bind="{ closeDialog, closeWithResult }" />
+		<slot v-bind="{ closeDialog }" />
 	</dialog>
 </template>
 

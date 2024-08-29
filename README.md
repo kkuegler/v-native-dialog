@@ -23,10 +23,10 @@ import { NativeDialog } from 'v-native-dialog';
 const open = ref(true);
 </script>
 <template>
-	<NativeDialog v-model:open="open" v-slot="{ closeWithResult }">
+	<NativeDialog v-model:open="open" v-slot="{ closeDialog }">
 		<p>The dialog content</p>
-		<button type="button" @click="closeWithResult('ok', 42)">OK</button>
-		<button type="button" @click="closeWithResult('cancel')">Cancel</button>
+		<button type="button" @click="closeDialog('ok', 42)">OK</button>
+		<button type="button" @click="closeDialog('cancel')">Cancel</button>
 	</NativeDialog>
 </template>
 <style>

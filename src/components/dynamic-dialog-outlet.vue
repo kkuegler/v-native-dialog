@@ -1,6 +1,6 @@
 <script lang="ts" setup>
-import { useAllDialogs } from "../use-dialog";
-const dialogs = useAllDialogs();
+import { useAllDynamicDialogs } from "../use-dialog";
+const dialogs = useAllDynamicDialogs();
 </script>
 
 <template>

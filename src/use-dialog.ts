@@ -1,19 +1,20 @@
-import { Ref, ref, shallowRef } from "vue";
+import { inject, InjectionKey, Ref, ref, shallowRef } from "vue";
 
-export function useDialog(
+export function useDialog<R = any>(
 	component: any,
 	{
-		initialOpen: initiallyOpen = true,
+		initiallyOpen = true,
 		removeAfterClose = true,
 		props = {} as Record<string, any>,
-	} = {},
+		dynamicDialogs = dialogs,
+	} = {}
 ) {
 	const open = ref(initiallyOpen);
-	const result = ref();
+	const result = ref<ResultPayload<R>>();
 	// random string, see https://stackoverflow.com/a/8084248/3394495
 	const id = (Math.random() + 1).toString(36).substring(7);
 
-	const { promise: resultPromise, resolve } = Promise.withResolvers();
+	const { promise: resultPromise, resolve } = Promise.withResolvers<ResultPayload<R>>();
 
 	const newDialog = {
 		component,
@@ -35,10 +36,10 @@ export function useDialog(
 		},
 	};
 
-	dialogs.value = [...dialogs.value, newDialog];
+	dynamicDialogs.value = [...dynamicDialogs.value, newDialog];
 
 	function destroy() {
-		dialogs.value = dialogs.value.filter((it) => it.id !== id);
+		dynamicDialogs.value = dynamicDialogs.value.filter((it) => it.id !== id);
 	}
 
 	return {
@@ -54,9 +55,9 @@ export function useDialog(
 	};
 }
 
-export interface ResultPayload {
-	action: "cancel" | "close" | string;
-	result: any;
+export interface ResultPayload<R = any> {
+	action: "close" | string;
+	result: R;
 }
 
 interface DialogInfo {
@@ -66,6 +67,7 @@ interface DialogInfo {
 	props?: Record<string, any>;
 }
 const dialogs = shallowRef<DialogInfo[]>([]);
-export function useAllDialogs() {
-	return dialogs;
+export const injectionKey = Symbol("dynamic-dialogs") as InjectionKey<typeof dialogs>;
+export function useAllDynamicDialogs() {
+	return inject(injectionKey, dialogs);
 }
