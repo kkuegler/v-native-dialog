@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { defineEmits, defineProps, nextTick, onBeforeUnmount, PropType, ref, watch } from "vue";
+import { nextTick, onBeforeUnmount, PropType, ref, watch } from "vue";
 import type { ResultPayload } from "../use-dialog";
 const open = defineModel<boolean>("open", { default: true });
 const props = defineProps({
