@@ -1,6 +1,6 @@
 {
 	"name": "v-native-dialog",
-	"version": "0.3.0",
+	"version": "0.3.1",
 	"description": "A Vue 3 component using the native <dialog> element",
 	"license": "MIT",
 	"homepage": "https://github.com/kkuegler/v-native-dialog#readme",
