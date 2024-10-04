@@ -4,7 +4,7 @@ A Vue 3 component using the [native `<dialog>` element](https://developer.mozill
 
 ## Docs
 
-tbd
+See the [StoryBook page](https://kkuegler.github.io/v-native-dialog/).
 
 ## Install
 
