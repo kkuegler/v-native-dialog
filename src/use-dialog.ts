@@ -14,7 +14,10 @@ export function useDialog<R = any>(
 	// random string, see https://stackoverflow.com/a/8084248/3394495
 	const id = (Math.random() + 1).toString(36).substring(7);
 
-	const { promise: resultPromise, resolve } = Promise.withResolvers<ResultPayload<R>>();
+	let resolve: (p: ResultPayload<R>) => void;
+	const resultPromise = new Promise<ResultPayload<R>>((r) => {
+		resolve = r;
+	});
 
 	const newDialog = {
 		component,
