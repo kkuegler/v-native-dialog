@@ -1,4 +1,4 @@
-# v-native-dialog
+# v-native-dialog <a href="https://www.npmjs.com/package/v-native-dialog"><img src="https://badgen.net/npm/v/v-native-dialog"></a> <img src="https://badgen.net/npm/types/v-native-dialog">
 
 A Vue 3 component using the [native `<dialog>` element](https://developer.mozilla.org/de/docs/Web/HTML/Element/dialog).
 
