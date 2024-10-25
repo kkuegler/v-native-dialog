@@ -18,7 +18,7 @@ const props = defineProps({
 	},
 	/**
 	 * How the dialog shall be shown/hidden. By default uses v-if, i.e. no rendering if hidden, re-rendering on show.<br>
-	 * If set to 'show', the rendered dialog is always there and will be shown/hidden using the 'open' attribute.
+	 * If set to 'show', the rendered dialog is always in the DOM and will be shown/hidden using the 'open' attribute.
 	 */
 	displayDirective: {
 		type: String as PropType<"if" | "show">,
