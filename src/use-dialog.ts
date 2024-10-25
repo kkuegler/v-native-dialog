@@ -1,7 +1,8 @@
-import { inject, InjectionKey, Ref, ref, shallowRef } from "vue";
+import type { InjectionKey, Ref, Component } from "vue";
+import { inject, ref, shallowRef } from "vue";
 
 export function useDialog<R = any>(
-	component: any,
+	component: Component,
 	{
 		initiallyOpen = true,
 		removeAfterClose = true,
@@ -19,7 +20,7 @@ export function useDialog<R = any>(
 		resolve = r;
 	});
 
-	const newDialog = {
+	const newDialog: DialogInfo = {
 		component,
 		id,
 		open,
@@ -66,7 +67,7 @@ export interface ResultPayload<R = any> {
 interface DialogInfo {
 	id: string;
 	open: Ref<boolean>;
-	component: any;
+	component: Component;
 	props?: Record<string, any>;
 }
 const dialogs = shallowRef<DialogInfo[]>([]);
