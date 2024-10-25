@@ -3,12 +3,6 @@ import { themes } from "@storybook/theming";
 
 const preview: Preview = {
 	parameters: {
-		controls: {
-			matchers: {
-				color: /(background|color)$/i,
-				date: /Date$/i,
-			},
-		},
 		darkMode: {
 			// https://storybook.js.org/addons/storybook-dark-mode
 			current: "dark",
