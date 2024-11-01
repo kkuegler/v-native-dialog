@@ -21,7 +21,8 @@
 	"author": "Konrad Kügler <swamblumat-git@yahoo.de>",
 	"type": "module",
 	"files": [
-		"dist"
+		"dist/*.*",
+		"dist/components/*.d.ts"
 	],
 	"main": "./dist/vue-native-dialog.js",
 	"module": "./dist/vue-native-dialog.js",
