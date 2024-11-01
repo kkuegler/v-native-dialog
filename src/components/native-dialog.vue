@@ -34,6 +34,10 @@ const emit = defineEmits<{
 	 * Triggers when the dialog has closed. Returns HTMLDialogElement
 	 */
 	(e: "closed", dialog: HTMLDialogElement | null): void;
+	/**
+	 * Emitted when closing the dialog. Contains the close action (e.g. 'ok'/'cancel') and
+	 * optionally a result value provided to the <code>closeDialog()</code> slot prop function.
+	 */
 	(e: "result", payload: ResultPayload): void;
 }>();
 
@@ -65,6 +69,11 @@ function onClosed(e: Event) {
 	emit("closed", dialog.value);
 }
 
+/**
+ * Closes the dialog.
+ * @param action optional close action to report, e.g. 'ok' or 'cancel' Available through useDialog() or the 'result' event.
+ * @param result optional result payload, e.g. data entered in the dialog. Available through useDialog() or the 'result' event.
+ */
 function closeDialog(action?: string, result?: any) {
 	if (action) {
 		emitResult(action, result);
@@ -111,6 +120,12 @@ defineExpose({
 	},
 });
 defineSlots<{
+	/**
+	 * Dialog content, with a slot prop <code>closeDialog()</code> to close the dialog from inside.<br>
+	 * This has two optional parameters that control the result available through <code>useDialog()</code> or the <code>result</code> event:<br>
+	 * <code>action</code>: optional close action to report, e.g. 'ok' or 'cancel'<br>
+	 * <code>result</code> optional result payload, e.g. data entered in the dialog.
+	 */
 	default(props: { closeDialog: typeof closeDialog }): any;
 }>();
 </script>
