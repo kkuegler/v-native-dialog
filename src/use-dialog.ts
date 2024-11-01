@@ -65,7 +65,7 @@ export function useDialog<R = any>(
 }
 
 export interface ResultPayload<R = any> {
-	action: "close" | string;
+	action: "close" | "hide" | string;
 	result: R;
 }
 

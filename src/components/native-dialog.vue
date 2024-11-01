@@ -94,7 +94,7 @@ function emitResult(action: string, result: any) {
 
 watch(
 	open,
-	(isOpen: boolean) => {
+	(isOpen, wasOpen) => {
 		if (isOpen) {
 			if (props.displayDirective === "if") {
 				// wait for re-render and thus the 'dialog' ref being filled
@@ -103,7 +103,9 @@ watch(
 				showDialog();
 			}
 		} else {
-			closeDialog();
+			if (wasOpen !== undefined) {
+				closeDialog("hide");
+			} // else was not rendered before, so don't close it
 		}
 	},
 	{
