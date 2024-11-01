@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { nextTick, onBeforeUnmount, PropType, ref, watch } from "vue";
+import { nextTick, onBeforeUnmount, PropType, ref, useTemplateRef, watch } from "vue";
 import type { ResultPayload } from "../use-dialog";
 const open = defineModel<boolean>("open", { default: true });
 const props = defineProps({
@@ -37,7 +37,7 @@ const emit = defineEmits<{
 	(e: "result", payload: ResultPayload): void;
 }>();
 
-const dialog = ref<HTMLDialogElement | null>(null);
+const dialog = useTemplateRef("dialog");
 const alreadyEmittedResult = ref<boolean>(false);
 const showDialog = () => {
 	const dlg = dialog.value;
