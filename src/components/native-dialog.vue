@@ -29,7 +29,7 @@ const emit = defineEmits<{
 	/**
 	 * Triggers when the dialog is shown. Returns HTMLDialogElement
 	 */
-	(e: "opened", dialog: HTMLDialogElement | null): void;
+	(e: "opened", dialog: HTMLDialogElement): void;
 	/**
 	 * Triggers when the dialog has closed. Returns HTMLDialogElement
 	 */
@@ -40,12 +40,16 @@ const emit = defineEmits<{
 const dialog = ref<HTMLDialogElement | null>(null);
 const alreadyEmittedResult = ref<boolean>(false);
 const showDialog = () => {
-	if (props.nonModal) {
-		dialog.value?.show();
-	} else {
-		dialog.value?.showModal();
+	const dlg = dialog.value;
+	if (!dlg) {
+		throw new Error("Dialog element not rendered yet");
 	}
-	emit("opened", dialog.value);
+	if (props.nonModal) {
+		dlg.show();
+	} else {
+		dlg.showModal();
+	}
+	emit("opened", dlg);
 	alreadyEmittedResult.value = false;
 };
 
