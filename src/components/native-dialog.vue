@@ -42,7 +42,7 @@ const emit = defineEmits<{
 }>();
 
 const dialog = useTemplateRef("dialog");
-const alreadyEmittedResult = ref<boolean>(false);
+const alreadyEmittedResult = ref(false);
 const showDialog = () => {
 	const dlg = dialog.value;
 	if (!dlg) {
