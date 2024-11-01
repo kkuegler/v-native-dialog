@@ -14,6 +14,7 @@ const meta = {
 		onResult: fn(),
 		onOpened: fn(),
 		onClosed: fn(),
+		// @ts-ignore This is a native event, not a NativeDialog one.
 		onCancel: fn(),
 		open: false,
 		nonModal: false,
