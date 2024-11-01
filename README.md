@@ -2,7 +2,7 @@
 
 A Vue 3 component using the [native `<dialog>` element](https://developer.mozilla.org/de/docs/Web/HTML/Element/dialog). This e.g. provides more helpful events than `<dialog/>` itself.
 
-This library also allow to imperatively show dialogs using a `useDialog()` composition function and (optionally) have dialogs "return" result values.
+This library also allows to imperatively show dialogs using a `useDialog()` composition function and (optionally) have dialogs "return" result values.
 
 ## Docs
 
