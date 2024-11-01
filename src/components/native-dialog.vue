@@ -150,13 +150,11 @@ defineSlots<{
 }
 
 .v-native-dialog {
+	background: var(--v-native-dialog-bg-color);
 	padding: var(--v-native-dialog-spacing);
 	max-height: min(80vh, 100%);
 	max-height: min(80dvb, 100%);
 	max-width: min(90vw, 60ch);
-}
-.v-native-dialog:where([open]) {
-	background: var(--v-native-dialog-bg-color);
 }
 
 .v-native-dialog::backdrop {
