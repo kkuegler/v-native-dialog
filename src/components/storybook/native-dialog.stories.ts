@@ -14,10 +14,17 @@ const meta = {
 		onResult: fn(),
 		onOpened: fn(),
 		onClosed: fn(),
+		onCancel: fn(),
 		open: false,
 		nonModal: false,
 		preventEscape: false,
 		displayDirective: "if",
+	},
+	argTypes: {
+		displayDirective: {
+			options: ["if", "show"],
+			control: { type: "inline-radio" },
+		},
 	},
 } satisfies Meta<typeof NativeDialog>;
 
