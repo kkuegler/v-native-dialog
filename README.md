@@ -60,7 +60,7 @@ async function askUser(question: string): Promise<number> {
 }
 ```
 
-```vue3
+```vue
 <!-- number-dialog.vue -->
 <script setup lang="ts">
 import NativeDialog from "../native-dialog.vue";
@@ -89,20 +89,20 @@ const number = ref(42);
 #### `nonModal`
 
 - **Type:** `boolean`
-- **Default:** `false`
-- **Description:** If true, the dialog will not be modal.
+- **Default:** `false`, i.e. modal
+- **Description:** If `true`, the dialog will [https://developer.mozilla.org/en-US/docs/Web/API/HTMLDialogElement/show](not be modal).
 
 #### `preventEscape`
 
 - **Type:** `boolean`
 - **Default:** `false`
-- **Description:** If true, prevents the dialog from being closed using the 'esc' key (or other platform ways of closing dialogs). Some browsers allow this only a single time, then close anyway. Use this sparingly, to provide a good user experience.
+- **Description:** If `true`, prevents the dialog from being closed using the 'esc' key (or other platform ways of closing dialogs). Some browsers allow this only a single time, then close anyway. Use this sparingly, to provide a good user experience.
 
 #### `displayDirective`
 
 - **Type:** `string` (`"if"` | `"show"`)
 - **Default:** `"if"`
-- **Description:** How the dialog shall be shown/hidden. By default, uses `v-if`, i.e., no rendering if hidden, re-rendering on show. If set to 'show', the rendered dialog is always in the DOM and will be shown/hidden using the 'open' attribute.
+- **Description:** How the dialog shall be shown/hidden. By default, uses `v-if`, i.e., no rendering if hidden, re-rendering on show. If set to `'show'`, the rendered dialog is always in the DOM and will be shown/hidden using the `'open'` attribute.
 
 ### Default Slot
 
@@ -125,7 +125,7 @@ const number = ref(42);
 
 #### `result`
 
-- **Description:** Triggers when a result is emitted from the dialog.
+- **Description:** Triggers when a result is emitted from the dialog (using `closeDialog()`).
 - **Payload:**
 
   - `payload`: `{action: string, result?: any}` aka `ResultPayload`
