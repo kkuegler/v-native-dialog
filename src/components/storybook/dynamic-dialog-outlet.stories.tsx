@@ -89,3 +89,23 @@ export const NumberDemoInline: StoryObj<typeof meta> = {
 		};
 	},
 };
+
+export const NumberDemoInline2: StoryObj<typeof meta> = {
+	render() {
+		return {
+			setup() {
+				const { result, show } = useDialog(NumberDialog, {
+					initiallyOpen: false,
+					removeAfterClose: false,
+					props: { question: "What is your favorite number?" },
+				});
+				return () =>
+				<>
+					<button type="button" onClick={show}>Open number input dialog</button>
+					<p>Result is {JSON.stringify(result.value)}.</p>
+					<DynamicDialogOutlet/>
+				</>
+			},
+		};
+	},
+};
