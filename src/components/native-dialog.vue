@@ -41,7 +41,7 @@ const emit = defineEmits<{
 	(e: "result", payload: ResultPayload): void;
 }>();
 
-const dialog = useTemplateRef("dialog");
+const dialog = useTemplateRef("dialogRef");
 const alreadyEmittedResult = ref(false);
 const showDialog = () => {
 	const dlg = dialog.value;
@@ -136,7 +136,7 @@ defineSlots<{
 	<dialog
 		v-if="displayDirective !== 'if' || open"
 		class="v-native-dialog"
-		ref="dialog"
+		ref="dialogRef"
 		@close="onClosed"
 		@cancel="onCancel"
 	>
