@@ -92,11 +92,18 @@ const number = ref(42);
 - **Default:** `false`, i.e. modal
 - **Description:** If `true`, the dialog will [not be modal](https://developer.mozilla.org/en-US/docs/Web/API/HTMLDialogElement/show).
 
-#### `preventEscape`
+#### `closedby`
+
+- **Type:** `string` (`"any"`, `"closerequest"`, `"none"`)
+- **Default:** not set
+- **Description:** The [native 'closedby' attribute](https://developer.mozilla.org/en-US/docs/Web/HTML/Reference/Elements/dialog#closedby), specifying how the dialog can be closed by the user. This currently (2025-12) has limited browser support. \
+  For `"none"` we also use a fallback which is Baseline Widely available: We call `preventDefault()` on the native [`cancel` event](https://developer.mozilla.org/en-US/docs/Web/API/HTMLDialogElement/cancel_event).
+
+#### `preventEscape` (deprecated, use `closedby="none"` instead)
 
 - **Type:** `boolean`
 - **Default:** `false`
-- **Description:** If `true`, prevents the dialog from being closed using the 'esc' key (or other platform ways of closing dialogs). Some browsers allow this only a single time, then close anyway. Use this sparingly, to provide a good user experience.
+- **Description:** If `true`, sets `closedby="none"` if that is not explicitly set. This prop is deprecated. Instead, use the `closedby` prop directly.
 
 #### `displayDirective`
 

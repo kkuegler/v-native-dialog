@@ -19,12 +19,18 @@ const meta = {
 		open: false,
 		nonModal: false,
 		preventEscape: false,
+		closedby: undefined,
 		displayDirective: "if",
 	},
 	argTypes: {
 		displayDirective: {
 			options: ["if", "show"],
 			control: { type: "inline-radio" },
+		},
+		closedby: {
+			type: "string",
+			options: ["any", "closerequest", "none", undefined],
+			control: { type: "select" },
 		},
 	},
 } satisfies Meta<typeof NativeDialog>;

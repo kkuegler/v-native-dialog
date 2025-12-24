@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { nextTick, onBeforeUnmount, PropType, ref, useTemplateRef, watch } from "vue";
+import { nextTick, onBeforeUnmount, PropType, ref, useTemplateRef, watch, computed } from "vue";
 import type { ResultPayload } from "../use-dialog";
 const open = defineModel<boolean>("open", { default: true });
 const props = defineProps({
@@ -8,13 +8,19 @@ const props = defineProps({
 		default: false,
 	},
 	/**
-	 * If true prevents the dialog from being closed using the 'esc' key (or other platform ways of closing dialogs).
-	 * Some browsers allow this only a single time, then close anyway.<br>
-	 * Use this sparingly, to provide a good user experience.
+	 * If `true`, sets `closedby="none"` if that is not explicitly set.
+	 * @deprecated Use closedby="none" instead.
 	 */
 	preventEscape: {
 		type: Boolean,
 		default: false,
+	},
+	/**
+	 * The native 'closedby' attribute, specifying how the dialog can be closed.<br>
+	 * https://developer.mozilla.org/en-US/docs/Web/HTML/Reference/Elements/dialog#closedby
+	 */
+	closedby: {
+		type: String as PropType<"any" | "closerequest" | "none">,
 	},
 	/**
 	 * How the dialog shall be shown/hidden. By default uses v-if, i.e. no rendering if hidden, re-rendering on show.<br>
@@ -43,6 +49,12 @@ const emit = defineEmits<{
 
 const dialog = useTemplateRef("dialogRef");
 const alreadyEmittedResult = ref(false);
+const effectiveClosedBy = computed(() => {
+	if (props.closedby) {
+		return props.closedby;
+	}
+	return props.preventEscape ? "none" : undefined;
+});
 const showDialog = () => {
 	const dlg = dialog.value;
 	if (!dlg) {
@@ -58,7 +70,7 @@ const showDialog = () => {
 };
 
 function onCancel(e: Event) {
-	if (props.preventEscape) {
+	if (effectiveClosedBy.value === "none") {
 		e.preventDefault();
 	}
 }
@@ -137,6 +149,7 @@ defineSlots<{
 		v-if="displayDirective !== 'if' || open"
 		class="v-native-dialog"
 		ref="dialogRef"
+		:closedby="effectiveClosedBy"
 		@close="onClosed"
 		@cancel="onCancel"
 	>
