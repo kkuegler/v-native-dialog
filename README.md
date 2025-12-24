@@ -90,7 +90,7 @@ const number = ref(42);
 
 - **Type:** `boolean`
 - **Default:** `false`, i.e. modal
-- **Description:** If `true`, the dialog will [https://developer.mozilla.org/en-US/docs/Web/API/HTMLDialogElement/show](not be modal).
+- **Description:** If `true`, the dialog will [not be modal](https://developer.mozilla.org/en-US/docs/Web/API/HTMLDialogElement/show).
 
 #### `preventEscape`
 
