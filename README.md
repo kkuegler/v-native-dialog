@@ -95,10 +95,10 @@ const number = ref(42);
 
 #### `closedby`
 
-- **Type:** `string` (`"any"`, `"closerequest"`, `"none"`)
+- **Type:** `string` (`"any" | "closerequest" | "none"`)
 - **Default:** not set
-- **Description:** The [native 'closedby' attribute](https://developer.mozilla.org/en-US/docs/Web/HTML/Reference/Elements/dialog#closedby), specifying how the dialog can be closed by the user. This currently (2025-12) has limited browser support. \
-  For `"none"` we also use a fallback which is Baseline Widely available: We call `preventDefault()` on the native [`cancel` event](https://developer.mozilla.org/en-US/docs/Web/API/HTMLDialogElement/cancel_event).
+- **Description:** The native ['closedby' attribute](https://developer.mozilla.org/en-US/docs/Web/HTML/Reference/Elements/dialog#closedby), specifying how the dialog can be closed by the user. This currently (2025-12) has limited browser support. \
+  For `"none"` we additionally use a fallback which is Baseline Widely available: We call `preventDefault()` on the native [`cancel` event](https://developer.mozilla.org/en-US/docs/Web/API/HTMLDialogElement/cancel_event).
 
 #### `preventEscape` (deprecated, use `closedby="none"` instead)
 
@@ -108,7 +108,7 @@ const number = ref(42);
 
 #### `displayDirective`
 
-- **Type:** `string` (`"if"` | `"show"`)
+- **Type:** `string` (`"if" | "show"`)
 - **Default:** `"if"`
 - **Description:** How the dialog shall be shown/hidden. By default, uses `v-if`, i.e., no rendering if hidden, re-rendering on show. If set to `'show'`, the rendered dialog is always in the DOM and will be shown/hidden using the `'open'` attribute.
 
