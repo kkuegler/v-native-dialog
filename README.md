@@ -127,9 +127,7 @@ const number = ref(42);
 
 - **Description:** Triggers when a result is emitted from the dialog (using `closeDialog()`).
 - **Payload:**
-
   - `payload`: `{action: string, result?: any}` aka `ResultPayload`
-
     - `action` is `'close'` by default, but can be any string you specify in the `closeDialog(action)` call, e.g. `'ok'` or `'cancel'`.
 
       If closed via `v-model:open` the action is `'hide'`.

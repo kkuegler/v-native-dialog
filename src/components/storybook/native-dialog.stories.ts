@@ -1,6 +1,6 @@
-import type { Meta, StoryObj } from "@storybook/vue3";
-import { fn } from "@storybook/test";
-import { useArgs } from "@storybook/preview-api";
+import type { Meta, StoryObj } from "@storybook/vue3-vite";
+import { fn } from "storybook/test";
+import { useArgs } from "storybook/preview-api";
 import NativeDialog from "../native-dialog.vue";
 
 // https://storybook.js.org/docs/writing-stories

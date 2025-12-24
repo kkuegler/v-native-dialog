@@ -1,4 +1,4 @@
-import type { Meta, StoryObj } from "@storybook/vue3";
+import type { Meta, StoryObj } from "@storybook/vue3-vite";
 import DynamicDialogOutlet from "../dynamic-dialog-outlet.vue";
 import { useDialog } from "../../use-dialog";
 import DemoDialog from "./demo-dialog.vue";

@@ -1,25 +1,30 @@
-import type { Preview } from "@storybook/vue3";
-import { themes } from "@storybook/theming";
+import type { Preview } from "@storybook/vue3-vite";
+import { themes } from "storybook/theming";
 
 const preview: Preview = {
 	parameters: {
 		darkMode: {
-			// https://storybook.js.org/addons/storybook-dark-mode
+			// https://github.com/vuelessjs/storybook-dark-mode
 			current: "dark",
 		},
 		docs: {
 			// https://github.com/storybookjs/storybook/blob/next/code/addons/docs/docs/theming.md#storybook-theming
 			theme: themes.dark,
+			codePanel: true,
 		},
 		backgrounds: {
-			// https://storybook.js.org/docs/essentials/backgrounds#configuration
-			default: "grey",
-			values: [
-				{
+			options: {
+				grey: {
 					name: "grey",
 					value: "grey",
 				},
-			],
+			},
+		},
+	},
+
+	initialGlobals: {
+		backgrounds: {
+			value: "grey",
 		},
 	},
 };
