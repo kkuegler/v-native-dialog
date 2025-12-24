@@ -24,14 +24,14 @@
 		"dist/*.*",
 		"dist/components/*.d.ts"
 	],
-	"main": "./dist/vue-native-dialog.js",
-	"module": "./dist/vue-native-dialog.js",
+	"main": "./dist/v-native-dialog.js",
+	"module": "./dist/v-native-dialog.js",
 	"exports": {
 		".": {
-			"import": "./dist/vue-native-dialog.js"
+			"import": "./dist/v-native-dialog.js"
 		},
 		"./style.css": {
-			"import": "./dist/style.css"
+			"import": "./dist/v-native-dialog.css"
 		}
 	},
 	"types": "./dist/index.d.ts",

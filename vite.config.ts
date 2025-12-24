@@ -6,13 +6,11 @@ import { resolve } from "node:path";
 export default defineConfig({
 	plugins: [vue()],
 	build: {
-		// target: 'esnext',
 		outDir: "dist",
 		lib: {
 			formats: ["es"],
 			entry: resolve(__dirname, "src/index.ts"),
 			name: "v-native-dialog",
-			fileName: (format) => `vue-native-dialog.js`,
 		},
 		rollupOptions: {
 			// make sure to externalize deps that shouldn't be bundled
