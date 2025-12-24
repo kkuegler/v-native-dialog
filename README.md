@@ -23,6 +23,7 @@ pnpm add v-native-dialog
 <script type="setup">
 import { ref } from 'vue';
 import { NativeDialog } from 'v-native-dialog';
+import 'v-native-dialog/style.css';
 const open = ref(true);
 </script>
 <template>
@@ -33,9 +34,6 @@ const open = ref(true);
 		<button type="button" @click="closeDialog('cancel')">Cancel</button>
 	</NativeDialog>
 </template>
-<style>
-@import "v-native-dialog/style.css";
-</style>
 ```
 
 ### As a dynamic dialog
@@ -53,7 +51,7 @@ async function askUser(question: string): Promise<number> {
 	const { resultPromise } = useDialog(NumberDialog, { props: { question } });
 	const { action, result } = await resultPromise;
 	if (action == "ok") {
-		return result;
+		return result; // the number entered in the dialog, e.g. 42
 	} else {
 		// action is 'close' or 'cancel'
 		return -1;
@@ -67,6 +65,7 @@ async function askUser(question: string): Promise<number> {
 <script setup lang="ts">
 import { ref } from "vue";
 import { NativeDialog } from "v-native-dialog";
+import "v-native-dialog/style.css";
 
 defineProps<{ question: string }>();
 const number = ref(42);
