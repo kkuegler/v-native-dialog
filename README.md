@@ -6,7 +6,7 @@ This library also allows to imperatively show dialogs using a `useDialog()` comp
 
 ## Docs
 
-See the interactive [StoryBook page](https://kkuegler.github.io/v-native-dialog/) and the documentation further down on this page.
+See the interactive [StoryBook page](https://kkuegler.github.io/v-native-dialog/) and the documentation [further down](#docs-nativedialog-component) on this page.
 
 ## Install
 
@@ -46,7 +46,9 @@ Prerequisite: Render `<DynamicDialogOutlet/>` provided by this library somewhere
 
 ```ts
 // some-file.ts
+import { useDialog } from "v-native-dialog";
 import NumberDialog from "./number-dialog.vue";
+
 async function askUser(question: string): Promise<number> {
 	const { resultPromise } = useDialog(NumberDialog, { props: { question } });
 	const { action, result } = await resultPromise;
@@ -63,8 +65,8 @@ async function askUser(question: string): Promise<number> {
 ```vue
 <!-- number-dialog.vue -->
 <script setup lang="ts">
-import NativeDialog from "../native-dialog.vue";
 import { ref } from "vue";
+import { NativeDialog } from "v-native-dialog";
 
 defineProps<{ question: string }>();
 const number = ref(42);
@@ -114,7 +116,7 @@ const number = ref(42);
 ### Default Slot
 
 - **Slot Props:**
-  - `closeDialog`: Function to close the dialog and optionally provide the `action` and `result` for the `result` event.
+  - `closeDialog(action?: string, result?: any)`: Function to close the dialog and optionally provide the `action` and `result` for the `result` event.
 
 ### Events
 
@@ -175,7 +177,9 @@ See [Usage](#usage) above.
   - `props` (Record<string, any>, default: `{}`): Props to pass to the dynamic dialog `component`.
   - `dynamicDialogs` (Ref<DialogInfo[]>, default: built-in global list): The list of dynamic dialogs.
 
-### Returns
+### Return value
+
+Returns an object with these properties:
 
 - `result` (`Ref<ResultPayload<R> | undefined>`): A `ref` holding the result payload of the dialog.
 - `resultPromise` (`Promise<ResultPayload<R>>`): A `Promise` that resolves with the result payload (close action and result) when the dialog is closed. Mostly helpful for one-shot dialogs.
