@@ -28,6 +28,7 @@
 	"module": "./dist/v-native-dialog.js",
 	"exports": {
 		".": {
+			"types": "./dist/index.d.ts",
 			"import": "./dist/v-native-dialog.js"
 		},
 		"./style.css": {
